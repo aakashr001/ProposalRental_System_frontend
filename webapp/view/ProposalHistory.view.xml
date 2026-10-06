@@ -1,0 +1,158 @@
+<mvc:View
+    controllerName="ns.proposalrentelsystem.controller.ProposalHistory"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page
+        id="proposalHistoryPage"
+        title="My Proposals"
+        showNavButton="true"
+        navButtonPress=".onBack"
+        enableScrolling="true">
+
+        <headerContent>
+            <Button
+                text="Create Proposal"
+                icon="sap-icon://add"
+                type="Emphasized"
+                press=".onCreateProposal"/>
+        </headerContent>
+
+        <content>
+
+            <!-- Intro -->  
+            <VBox >  
+                <Title text="My Proposals" level="H1" titleStyle="H2"/>
+                <Text text="View and manage your proposal history." class="sapUiTinyMarginTop"/>
+            </VBox>
+
+            <!-- Overview -->
+            <VBox >
+                <Title text="Proposal Overview" 
+                       level="H2"
+                       titleStyle="H4"/>
+
+                <HBox wrap="Wrap">
+
+                    <GenericTile
+                        header="Total"
+                        subheader="All proposals"
+                        frameType="TwoByHalf"
+                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                        <TileContent>
+                            <NumericContent
+                                value="{proposal>/total}"
+                                icon="sap-icon://document-text"
+                                valueColor="Neutral"
+                                withMargin="false"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile
+                        header="Draft"
+                        subheader="Not yet submitted"
+                        frameType="TwoByHalf"
+                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                        <TileContent>
+                            <NumericContent
+                                value="{proposal>/draft}"
+                                icon="sap-icon://edit"
+                                valueColor="Neutral"
+                                withMargin="false"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile
+                        header="Submitted"
+                        subheader="Awaiting approval"
+                        frameType="TwoByHalf"
+                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                        <TileContent>
+                            <NumericContent
+                                value="{proposal>/submitted}"
+                                icon="sap-icon://paper-plane"
+                                valueColor="Critical"
+                                withMargin="false"/>
+                        </TileContent>
+                    </GenericTile>
+
+                    <GenericTile
+                        header="Approved"
+                        subheader="Ready to proceed"
+                        frameType="TwoByHalf"
+                        class="sapUiTinyMarginBottom">
+                        <TileContent>
+                            <NumericContent
+                                value="{proposal>/approved}"
+                                icon="sap-icon://accept"
+                                valueColor="Good"
+                                withMargin="false"/>
+                        </TileContent>
+                    </GenericTile>
+
+                </HBox>
+            </VBox>
+
+            <!-- History -->
+            <Table
+                id="proposalHistoryList"
+                items="{proposal>/proposals}"
+                inset="true"
+                growing="true"
+                growingThreshold="10"
+                sticky="ColumnHeaders,HeaderToolbar"
+                noDataText="No proposals yet. Select Create Proposal to start."
+                class="sapUiResponsiveMargin"
+                width="auto">
+
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Title text="Proposal History" level="H2"/>
+                            <ToolbarSpacer/>
+                            <Text text="Your recent proposals"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Proposal"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Type"/>
+                    </Column>
+                    <Column minScreenWidth="Desktop" demandPopin="true">
+                        <Text text="Date"/>
+                    </Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Status"/>
+                    </Column>
+                    <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Total Amount"/>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem type="Navigation" press=".onProposalPress">
+                        <cells>
+                            <ObjectIdentifier title="{proposal>proposalNumber}"/>
+                            <Text text="{proposal>type}"/>
+                            <Text text="{proposal>proposalDate}"/>
+                            <ObjectStatus
+                                text="{proposal>status}"
+                                state="{proposal>statusState}"
+                                inverted="true"/>
+                            <ObjectNumber
+                                number="{proposal>totalAmount}"
+                                unit="₹"
+                                emphasized="true"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>
