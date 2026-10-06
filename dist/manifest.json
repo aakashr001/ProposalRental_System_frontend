@@ -1,0 +1,170 @@
+{
+	"_version": "1.89.0",
+	"sap.app": {
+		"id": "proposalrental",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			]
+		},
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:basic",
+			"version": "1.32.0",
+			"toolsId": "1bac5748-083b-4251-8fbe-5d273b1074c5"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/odata/v4/salesapi/",
+				"type": "OData",
+				"settings": {
+					"annotations": [],
+					"localUri": "localService/mainService/metadata.xml",
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"proposalrental-display": {
+					"semanticObject": "proposalrental",
+					"action": "display",
+					"title": "{{proposalrental-display.flpTitle}}",
+					"subTitle": "{{proposalrental-display.flpSubtitle}}",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					}
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"dependencies": {
+			"minUI5Version": "1.152.0",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "proposalrental.i18n.i18n",
+					"supportedLocales": [
+						""
+					]
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"rootView": {
+			"viewName": "proposalrental.view.App",
+			"type": "XML",
+			"id": "rootView",
+			"async": true
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "proposalrental.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"name": "App",
+					"pattern": "",
+					"target": "TargetApp"
+				},
+				{
+					"name": "proposalrental",
+					"pattern": "proposalrental",
+					"target": "Targetproposalrental"
+				},
+				{
+					"name": "proposalwizard",
+					"pattern": "proposalwizard",
+					"target": "Targetproposalwizard"
+				},
+				{
+					"name": "proposalwizardWithId",
+					"pattern": "proposalwizard/{proposalId}",
+					"target": "Targetproposalwizard"
+				}
+			],
+			"targets": {
+				"TargetApp": {
+					"viewType": "XML",
+					"viewName": "App",
+					"viewId": "App",
+					"controlAggregation": "pages"
+				},
+				"Targetproposalrental": {
+					"viewType": "XML",
+					"viewName": "proposalrental",
+					"viewId": "proposalrental",
+					"controlAggregation": "pages"
+				},
+				"Targetproposalwizard": {
+					"viewType": "XML",
+					"viewName": "proposalwizard",
+					"viewId": "proposalWizard",
+					"controlAggregation": "pages"
+				}
+			}
+		},
+		"flexBundle": false
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "proposalrental"
+	}
+}

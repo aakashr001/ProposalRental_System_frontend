@@ -1,0 +1,101 @@
+<mvc:View
+    controllerName="proposalrental.controller.App"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <App id="app">
+
+        <Page
+            id="appPage"
+            title="Proposal Rental System">
+
+            <content>
+
+                <HBox
+                    width="100%"
+                    justifyContent="Center"
+                    alignItems="Center"
+                    class="sapUiMediumMarginTop">
+
+                    <!-- Rental Contract Tile -->
+                    <GenericTile
+                        class="sapUiSmallMargin"
+                        header="Active"
+                        subheader="Contract Status"
+                        press=".onRentalContractPress">
+
+                        <TileContent>
+
+                            <NumericContent
+                                value="{Count>/active}"
+                                icon="sap-icon://documents"
+                                withMargin="false" />
+
+                        </TileContent>
+
+                    </GenericTile>
+
+                    <GenericTile
+                        class="sapUiSmallMargin"
+                        header="Completed"
+                        subheader="Contract Status"
+                        press=".onRentalContractPress">
+
+                        <TileContent>
+
+                            <NumericContent
+                                value="{Count>/completed}"
+                                icon="sap-icon://documents"
+                                withMargin="false" />
+
+                        </TileContent>
+
+                    </GenericTile>
+
+                        <GenericTile
+                        class="sapUiSmallMargin"
+                        header="Cancelled"
+                        subheader="Contract Status"
+                        press=".onRentalContractPress">
+
+                        <TileContent>
+
+                            <NumericContent
+                                value="{Count>/cancelled}"
+                                icon="sap-icon://documents"
+                                withMargin="false" />
+
+                        </TileContent>
+
+                    </GenericTile>
+
+
+                    <!-- Approved Proposal Tile -->
+                    <GenericTile
+                        class="sapUiSmallMargin"
+                        header="Approved Proposals"
+                        subheader="Ready for Allocation"
+                        press=".onApprovedProposalPress">
+
+                        <TileContent
+                            footer="View Approved Proposals">
+
+                            <NumericContent
+                                value="{Count>/approved}"
+                                icon="sap-icon://accept"
+                                withMargin="false" />
+
+                        </TileContent>
+
+                    </GenericTile>
+
+                </HBox>
+
+            </content>
+
+        </Page>
+
+    </App>
+
+</mvc:View>
