@@ -1,0 +1,355 @@
+<mvc:View
+    controllerName="proposalrental.controller.proposalwizard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
+    <Page
+        id="proposalWizardPage"
+        title="Allocate &amp; Create Rental"
+        showNavButton="true"
+        navButtonPress=".onBack">
+
+        <content>
+
+            <Wizard
+                id="proposalWizard"
+                showNextButton="false"
+                complete=".onWizardComplete">
+
+            <!-- Rental Contract -->
+
+                <WizardStep
+                    id="rentalContractStep"
+                    title="Rental Contract"
+                    validated="false">
+
+                    <VBox class="sapUiMediumMargin">
+
+                        <Title
+                            text="Create Rental Contract"
+                            level="H2"
+                            class="sapUiSmallMarginBottom"/>
+
+                        <form:SimpleForm
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="2"
+                            emptySpanL="2"
+                            emptySpanM="2"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1">
+
+                            <Label text="Proposal"/>
+                            <Input
+                                id="proposalInput"
+                                value="{allocation>/proposalDisplay}"
+                                editable="false"/>
+
+                            <Label text="Customer ID"/>
+                            <Input
+                                id="customerInput"
+                                value="{allocation>/customerId}"
+                                editable="false"/>
+
+                            <Label text="Contract Number"/>
+                            <Input
+                                id="contractNumberInput"
+                                value="{allocation>/contractNumber}"
+                                placeholder="Enter contract number"/>
+
+                            <Label text="Contract Date"/>
+                            <DatePicker
+                                id="contractDateInput"
+                                value="{allocation>/contractDate}"
+                                valueFormat="yyyy-MM-dd"
+                                displayFormat="dd-MM-yyyy"/>
+
+                            <Label text="Start Date"/>
+                            <DatePicker
+                                id="startDateInput"
+                                value="{allocation>/startDate}"
+                                valueFormat="yyyy-MM-dd"
+                                displayFormat="dd-MM-yyyy"/>
+
+                            <Label text="End Date"/>
+                            <DatePicker
+                                id="endDateInput"
+                                value="{allocation>/endDate}"
+                                valueFormat="yyyy-MM-dd"
+                                displayFormat="dd-MM-yyyy"/>
+
+                            <Label text="Total Rental Amount"/>
+                            <Input
+                                id="totalRentalAmountInput"
+                                value="{allocation>/totalRentalAmount}"
+                                type="Number"
+                                placeholder="Enter amount"/>
+
+                        </form:SimpleForm>
+
+                        <HBox
+                            justifyContent="End"
+                            class="sapUiMediumMarginTop">
+
+                            <Button
+                                id="rentalNextButton"
+                                text="Next"
+                                type="Emphasized"
+                                press=".onRentalNext"/>
+
+                        </HBox>
+
+                    </VBox>
+
+                </WizardStep>
+
+
+            <!-- Equipment Allocation -->
+
+                <WizardStep
+                    id="equipmentAllocationStep"
+                    title="Equipment Allocation"
+                    validated="false">
+
+                    <VBox class="sapUiMediumMargin">
+
+                        <Title
+                            text="Available Equipment"
+                            level="H2"
+                            class="sapUiSmallMarginBottom"/>
+
+                        <Text
+                            text="Select the equipment you want to allocate."
+                            class="sapUiSmallMarginBottom"/>
+
+                        <Toolbar class="sapUiSmallMarginBottom">
+
+                            <Title
+                                text="Equipment List"
+                                level="H3"/>
+
+                            <ToolbarSpacer/>
+
+                            <Text
+                                text="Selected: {allocation>/selectedEquipmentCount}"/>
+
+                        </Toolbar>
+
+
+                        <Table
+                            id="availableEquipmentTable"
+                            mode="MultiSelect"
+                            growing="true"
+                            growingThreshold="20"
+                            noDataText="No available equipment found"
+                            items="{allocation>/availableEquipment}"
+                            selectionChange=".onEquipmentSelectionChange">
+
+                            <columns>
+
+                                <Column>
+                                    <Text text="Equipment ID"/>
+                                </Column>
+
+                                <Column>
+                                    <Text text="Equipment Name"/>
+                                </Column>
+
+                                <Column>
+                                    <Text text="Status"/>
+                                </Column>
+
+                            </columns>
+
+                            <items>
+
+                                <ColumnListItem>
+
+                                    <cells>
+
+                                        <Text
+                                            text="{allocation>equipmentId}"/>
+
+                                        <Text
+                                            text="{allocation>equipmentName}"/>
+
+                                        <Text
+                                            text="{allocation>status}"/>
+
+                                    </cells>
+
+                                </ColumnListItem>
+
+                            </items>
+
+                        </Table>
+
+
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            class="sapUiMediumMarginTop">
+
+                            <Button
+                                text="Back"
+                                press=".onBackToRental"/>
+
+                            <Button
+                                id="equipmentNextButton"
+                                text="Next"
+                                type="Emphasized"
+                                enabled="false"
+                                press=".onEquipmentNext"/>
+
+                        </HBox>
+
+                    </VBox>
+
+                </WizardStep>
+
+
+            <!-- Review -->
+
+                <WizardStep
+                    id="reviewStep"
+                    title="Review"
+                    validated="false">
+
+                    <VBox class="sapUiMediumMargin">
+
+                        <Title
+                            text="Review Rental"
+                            level="H2"
+                            class="sapUiSmallMarginBottom"/>
+
+                        <form:SimpleForm
+                            editable="false"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            emptySpanXL="2"
+                            emptySpanL="2"
+                            emptySpanM="2"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1">
+
+                            <Label text="Proposal"/>
+                            <Text
+                                text="{allocation>/proposalDisplay}"/>
+
+                            <Label text="Customer ID"/>
+                            <Text
+                                text="{allocation>/customerId}"/>
+
+                            <Label text="Contract Number"/>
+                            <Text
+                                text="{allocation>/contractNumber}"/>
+
+                            <Label text="Contract Date"/>
+                            <Text
+                                text="{allocation>/contractDate}"/>
+
+                            <Label text="Start Date"/>
+                            <Text
+                                text="{allocation>/startDate}"/>
+
+                            <Label text="End Date"/>
+                            <Text
+                                text="{allocation>/endDate}"/>
+
+                            <Label text="Total Rental Amount"/>
+                            <Text
+                                text="{allocation>/totalRentalAmount}"/>
+
+                        </form:SimpleForm>
+
+
+                        <Title
+                            text="Selected Equipment"
+                            level="H3"
+                            class="sapUiMediumMarginTop sapUiSmallMarginBottom"/>
+
+                        <Table
+                            id="selectedEquipmentTable"
+                            items="{allocation>/selectedEquipment}"
+                            noDataText="No equipment selected">
+
+                            <columns>
+
+                                <Column>
+                                    <Text text="Equipment ID"/>
+                                </Column>
+
+                                <Column>
+                                    <Text text="Equipment Name"/>
+                                </Column>
+
+                                <Column>
+                                    <Text text="Status"/>
+                                </Column>
+
+                            </columns>
+
+                            <items>
+
+                                <ColumnListItem>
+
+                                    <cells>
+
+                                        <Text
+                                            text="{allocation>equipmentId}"/>
+
+                                        <Text
+                                            text="{allocation>equipmentName}"/>
+
+                                        <Text
+                                            text="{allocation>status}"/>
+
+                                    </cells>
+
+                                </ColumnListItem>
+
+                            </items>
+
+                        </Table>
+
+
+                        <HBox
+                            justifyContent="SpaceBetween"
+                            class="sapUiMediumMarginTop">
+
+                            <Button
+                                text="Back"
+                                press=".onBackToEquipment"/>
+
+                            <Button
+                                text="Complete"
+                                type="Emphasized"
+                                press=".onCompleteRental"/>
+
+                        </HBox>
+
+                    </VBox>
+
+                </WizardStep>
+
+            </Wizard>
+
+        </content>
+
+    </Page>
+
+</mvc:View>
+
