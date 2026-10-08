@@ -15,66 +15,176 @@ sap.ui.define([
 
             onInit: function () {
 
-                const oData = {
+                this.loadProposals();
 
-                    total: 5,
-                    draft: 1,
-                    submitted: 2,
-                    approved: 2,
+            },
 
-                    proposals: [
 
-                        {
-                            proposalNumber: "PROP-2026-0001",
-                            type: "Rental",
-                            proposalDate: "10 Feb 2026",
-                            status: "Submitted",
-                            statusState: "Warning",
-                            totalAmount: "2,85,000"
-                        },
+            loadProposals: async function () {
 
-                        {
-                            proposalNumber: "PROP-2026-0002",
-                            type: "Rental",
-                            proposalDate: "18 Feb 2026",
-                            status: "Approved",
-                            statusState: "Success",
-                            totalAmount: "4,20,000"
-                        }
+                const oODataModel =
+                    this.getOwnerComponent().getModel();
 
-                    ]
+                try {
 
-                };
+                    console.log(
+                        "OData model:",
+                        oODataModel
+                    );
 
-                const oModel = new JSONModel(oData);
+                    console.log(
+                        "Loading Proposals..."
+                    );
 
-                this.getView().setModel(oModel,"proposal");
+
+                    const oBinding =
+                        oODataModel.bindList("/Proposals");
+
+
+                    const aContexts =
+                        await oBinding.requestContexts();
+
+
+                    const aProposals =
+                        aContexts.map(function (oContext) {
+
+                            return oContext.getObject();
+
+                        });
+
+
+                    console.log(
+                        "Backend Proposals:",
+                        aProposals
+                    );
+
+
+                    // ==============================
+                    // COUNTS
+                    // ==============================
+
+                    const iTotal =
+                        aProposals.length;
+
+
+                    const iDraft =
+                        aProposals.filter(function (oProposal) {
+
+                            return oProposal.status === "Draft";
+
+                        }).length;
+
+
+                    const iSubmitted =
+                        aProposals.filter(function (oProposal) {
+
+                            return oProposal.status === "Submitted";
+
+                        }).length;
+
+
+                    const iApproved =
+                        aProposals.filter(function (oProposal) {
+
+                            return oProposal.status === "Approved";
+
+                        }).length;
+
+
+                    // ==============================
+                    // UI MODEL
+                    // ==============================
+
+                    const oData = {
+
+                        total: iTotal,
+
+                        draft: iDraft,
+
+                        submitted: iSubmitted,
+
+                        approved: iApproved,
+
+                        proposals: aProposals
+
+                    };
+
+
+                    const oProposalModel =
+                        new JSONModel(oData);
+
+
+                    this.getView().setModel(
+                        oProposalModel,
+                        "proposal"
+                    );
+
+
+                    console.log(
+                        "Proposal model created:",
+                        oData
+                    );
+
+                } catch (oError) {
+
+                    console.error(
+                        "Failed to load proposals:",
+                        oError
+                    );
+
+
+                    MessageToast.show(
+                        "Unable to load proposals"
+                    );
+
+                }
+
             },
 
 
             onCreateProposal: function () {
 
-                this.getOwnerComponent().getRouter().navTo("createProposal");
+                this.getOwnerComponent()
+                    .getRouter()
+                    .navTo("CreateProposal");
 
             },
 
 
-
-
             onProposalPress: function (oEvent) {
 
-                const oContext = oEvent.getSource().getBindingContext("proposal");
+                const oContext =
+                    oEvent.getSource()
+                        .getBindingContext("proposal");
 
-                const oProposal = oContext.getObject();
 
-                MessageToast.show("Opening " + oProposal.proposalNumber);
+                if (!oContext) {
+
+                    MessageToast.show(
+                        "Proposal details not available"
+                    );
+
+                    return;
+                }
+
+
+                const oProposal =
+                    oContext.getObject();
+
+
+                MessageToast.show(
+                    "Opening " +
+                    oProposal.proposalNumber
+                );
 
             },
 
 
             onBack: function () {
 
-                this.getOwnerComponent().getRouter().navTo("RouteCustomer_View");
+                this.getOwnerComponent()
+                    .getRouter()
+                    .navTo("RouteCustomer_View");
 
             }
 

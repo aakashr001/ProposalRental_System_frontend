@@ -1,0 +1,152 @@
+/* Background */
+.loginPage {
+    background-image: url("../image/Main.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Main glass card */
+.glassLogin {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    overflow: hidden !important;
+}
+
+/* Remove SimpleForm internal white backgrounds */
+.glassLogin .sapUiFormResGrid,
+.glassLogin .sapUiFormResGridCont,
+.glassLogin .sapUiFormResGridMain,
+.glassLogin .sapUiRespGrid {
+    background: transparent !important;
+}
+
+/* Glass title section */
+.glassLogin .sapUiFormTitle {
+    background: transparent !important;
+    color: white !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Labels */
+.glassLogin .sapMText {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* Inputs */
+.glassLogin .sapMInputBaseInner {
+    background: rgba(255, 255, 255, 0.75) !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+/* Buttons */
+.glassLogin .sapMBtnInner {
+    border-radius: 8px !important;
+}
+
+/* Registation */
+#__vbox0 {
+    background-image: url("../image/REGG.jpg");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+/* KPI CARDS */
+
+.proposalCard {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-width: 220px;
+    width: 23%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-bottom: 3px solid #0a6ed1;
+}
+
+.proposalCardBlue {
+    border-bottom-color: #0a6ed1;
+}
+
+.proposalCardPurple {
+    border-bottom-color: #7c4dff;
+}
+
+.proposalCardOrange {
+    border-bottom-color: #e9730c;
+}
+
+.proposalCardGreen {
+    border-bottom-color: #107e3e;
+}
+
+/* Card title */
+
+.proposalCardTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475e75;
+}
+
+/* Card number */
+
+.proposalCardNumber {
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+/* Card icon */
+
+.proposalCardIcon {
+    color: #0a6ed1;
+}
+
+/* HISTORY SECTION */
+
+.proposalHistorySection {
+    background: #ffffff;
+    margin: 20px 24px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/* History heading */
+
+.proposalHistoryHeader {
+    padding: 0 20px 16px 20px;
+}
+
+/* Table */
+
+.proposalHistorySection .sapMListTbl {
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Table header */
+
+.proposalHistorySection .sapMListTblHeaderCell {
+    background: #f5f7fa;
+}
+
+/* Table rows */
+
+.proposalHistorySection .sapMLIB {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Proposal number */
+
+.proposalHistorySection .sapMObjectIdentifierTitle {
+    font-weight: 600;
+}

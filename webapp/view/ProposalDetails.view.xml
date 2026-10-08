@@ -1,0 +1,101 @@
+<mvc:View
+    controllerName="ns.proposalrentelsystem.controller.ProposalDetails"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        id="proposalDetailsPage"
+        title="My Proposal Details"
+        showNavButton="true"
+        navButtonPress=".onNavBack">
+
+        <content>
+
+            <VBox class="sapUiMediumMargin">
+
+                <Title
+                    text="Customer Proposals"
+                    level="H2"
+                    class="sapUiSmallMarginBottom" />
+
+                <Table
+                    id="proposalTable"
+                    items="{proposalModel>/value}"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    growingThreshold="10"
+                    noDataText="No proposals found">
+
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <Title text="Proposals" />
+                            <ToolbarSpacer />
+                            <Button text="Create" type="Emphasized" icon="sap-icon://add" press=".onCreatePress" />
+                            <Button text="Delete" type="Reject" icon="sap-icon://delete"
+                enabled="{ui>/hasSelection}" press=".onDeletePress" />
+                            <SearchField width="15rem" search=".onSearch" placeholder="Proposal number" />
+                            <Button icon="sap-icon://refresh" press=".onRefresh" />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    
+                    <columns>
+
+                        <Column>
+                            <Text text="Proposal Number" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Proposal Date" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Type" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Status" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Total Amount" />
+                        </Column>
+
+                        <Column>
+                            <Text text="Negotiated Amount" />
+                        </Column>
+
+                    </columns>
+
+                    <items>
+
+                        <ColumnListItem>
+
+                            <cells>
+
+                                <Text text="{proposalModel>proposalNumber}" />
+
+                                <Text text="{proposalModel>proposalDate}" />
+
+                                <Text text="{proposalModel>proposalType}" />
+
+                                <ObjectStatus text="{proposalModel>proposalStatus}" />
+
+                                <ObjectNumber number="{proposalModel>totalAmount}" />
+
+                                <ObjectNumber number="{proposalModel>negotiateAmount}" />
+
+                            </cells>
+
+                        </ColumnListItem>
+
+                    </items>
+
+                </Table>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View> 
