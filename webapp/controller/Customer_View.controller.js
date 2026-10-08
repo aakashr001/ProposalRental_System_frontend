@@ -16,11 +16,16 @@ sap.ui.define([
             onInit(){
 
             },
+            
              onSignup(){
+                console.log("Testing");
+                
                 this.getOwnerComponent().getRouter().navTo("Registation")
              },
 
             async onLogin(oEvent) {
+                console.log("Login Testing");
+                
 
                 const oModel = this.getView().getModel();
 
