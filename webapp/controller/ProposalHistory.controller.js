@@ -15,7 +15,7 @@ sap.ui.define([
 
             onInit: function () {
 
-                this.loadProposals();
+                // this.loadProposals();
 
             },
 

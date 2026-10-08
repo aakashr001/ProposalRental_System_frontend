@@ -163,7 +163,7 @@
 
             <VBox
                 class="proposalHistorySection sapUiResponsiveContentPadding">
-
+                
                 <HBox
                     justifyContent="SpaceBetween"
                     alignItems="Center"
@@ -182,7 +182,7 @@
 
                 <Table
                     id="proposalHistoryList"
-                    items="{proposal>/proposals}"
+                    items="{proposalModel>/}"
                     inset="false"
                     growing="true"
                     growingThreshold="10"
@@ -235,21 +235,21 @@
                             <cells>
 
                                 <ObjectIdentifier
-                                    title="{proposal>proposalNumber}"/>
+                                    title="{proposalModel>proposalNumber}"/>
 
                                 <Text
-                                    text="{proposal>type}"/>
+                                    text="{proposalModel>type}"/>
 
                                 <Text
-                                    text="{proposal>proposalDate}"/>
+                                    text="{proposalModel>proposalDate}"/>
 
                                 <ObjectStatus
-                                    text="{proposal>status}"
-                                    state="{proposal>statusState}"
+                                    text="{proposalModel>status}"
+                                    state="{proposalModel>statusState}"
                                     inverted="true"/>
 
                                 <ObjectNumber
-                                    number="{proposal>totalAmount}"
+                                    number="{proposalModel>totalAmount}"
                                     unit="₹"
                                     emphasized="true"/>
 
@@ -261,7 +261,7 @@
 
                 </Table>
 
-            </VBox>
+            </VBox>   
 
         </content>
 

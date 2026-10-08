@@ -78,11 +78,11 @@ sap.ui.define([
 
                     const resultObj = oResultContext.getObject();
 
-                    console.log("Result Object:",resultObj);
+                    console.log("Result Object:",resultObj.value);
 
                     // 6. Create JSON Model
 
-                    const oProposalModel = new JSONModel(resultObj);
+                    const oProposalModel = new JSONModel(resultObj.value);
 
                     // 7. Store model globally
 
