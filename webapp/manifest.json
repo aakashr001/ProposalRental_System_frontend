@@ -62,7 +62,9 @@
       "minUI5Version": "1.152.0",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.uxap": {},
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {
@@ -127,7 +129,12 @@
           "target" : [
             "Registation"
           ]
-        }
+        },
+           {
+      "name": "CreateProposal",
+      "pattern": "proposal/create",
+      "target": "CreateProposal"
+    }
     ],
 
     "targets": {
@@ -143,7 +150,11 @@
           "Registation":{
             "id" : "Registation",
             "name" : "Registation"
-          }
+          },
+          "CreateProposal": {
+      "name": "CreateProposal",
+      "id": "CreateProposal"
+    }
         
     }
 },
