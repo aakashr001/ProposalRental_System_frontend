@@ -238,13 +238,13 @@
                                     title="{proposalModel>proposalNumber}"/>
 
                                 <Text
-                                    text="{proposalModel>type}"/>
+                                    text="{proposalModel>proposalType}"/>
 
                                 <Text
                                     text="{proposalModel>proposalDate}"/>
 
                                 <ObjectStatus
-                                    text="{proposalModel>status}"
+                                    text="{proposalModel>proposalStatus}"
                                     state="{proposalModel>statusState}"
                                     inverted="true"/>
 
