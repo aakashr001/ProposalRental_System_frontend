@@ -16,24 +16,19 @@ sap.ui.define([
             onInit(){
 
             },
-            
              onSignup(){
-                console.log("Testing");
-                
                 this.getOwnerComponent().getRouter().navTo("Registation")
              },
 
             async onLogin(oEvent) {
-                console.log("Login Testing");
-                
 
                 const oModel = this.getView().getModel();
 
                 console.log("Model:", oModel);
 
-                const userName = this.byId("username").getValue();
+                const userName = this.byId("username").getValue().trim();
 
-                const password = this.byId("password").getValue();
+                const password = this.byId("password").getValue().trim();
 
                 console.log("User Name:", userName);
                 console.log("Password:", password);
@@ -78,11 +73,11 @@ sap.ui.define([
 
                     const resultObj = oResultContext.getObject();
 
-                    console.log("Result Object:",resultObj.value);
+                    console.log("Result Object:",resultObj);
 
                     // 6. Create JSON Model
 
-                    const oProposalModel = new JSONModel(resultObj.value);
+                    const oProposalModel = new JSONModel(resultObj);
 
                     // 7. Store model globally
 
@@ -97,8 +92,13 @@ sap.ui.define([
                     MessageToast.show(
                         "Login successful"
                     );
+
+
 sessionStorage.setItem("username", userName);
 this.getOwnerComponent().getModel().changeHttpHeaders({ "x-username": userName });
+
+// 9. Navigate to ProposalDetails
+this.getOwnerComponent().getRouter().navTo("ProposalHistory");
 
                     // 9. Navigate to ProposalDetails
 

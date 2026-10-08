@@ -11,8 +11,8 @@ sap.ui.define([
                 "sap.ui.core.IAsyncContentCreation"
             ]
         },
-
 init() {
+    // call the base component's init function
     UIComponent.prototype.init.apply(this, arguments);
 
     // restore the username header after a page reload
@@ -21,7 +21,10 @@ init() {
         this.getModel().changeHttpHeaders({ "x-username": sUser });
     }
 
+    // set the device model
     this.setModel(models.createDeviceModel(), "device");
+
+    // enable routing
     this.getRouter().initialize();
 }
     });

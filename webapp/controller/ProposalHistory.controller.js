@@ -15,7 +15,12 @@ sap.ui.define([
 
             onInit: function () {
 
-                // this.loadProposals();
+                this.loadProposals();
+                this.getOwnerComponent().getRouter()
+    .getRoute("ProposalHistory")
+    .attachPatternMatched(() => {
+        if (this.byId("proposalTable").getBinding("items")) { this.onRefresh(); }
+    });
 
             },
 

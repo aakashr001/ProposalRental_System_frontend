@@ -1,0 +1,120 @@
+<mvc:View
+    xmlns:form2="sap.ui.layout.form"
+    controllerName="ns.proposalrentelsystem.controller.Registation"
+    xmlns:form="sap.ui.layout.form.SimpleForm"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    >
+   <Page title="Registation form" 
+        class = "Registorpage"
+    showNavButton="true" 
+    navButtonPress=".onNavto">
+
+            <VBox alignItems="End">
+                <form2:SimpleForm 
+                
+                 class="glassLogin"
+                width="100%"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="12"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false"
+                 title="Registation"
+                                    >
+                        <form2:content >
+                        
+                        
+                            <core:Title text=""></core:Title>
+                            <Label text="companyName" required="true"/>
+                            <Input placeholder="Enter the companyname" 
+                                   required="true"  value="{Details>/companyName}" />
+
+                            <Label text="companyType" required="true" />
+                            <ComboBox id="companyType"
+                                    selectedKey="{Details>/companyType}"
+                                    width="100%"
+                                    required="true"
+                                    change="onCountryChange">
+                                    
+                                    <core:Item key="Construction" text="Construction"/>
+                                    <core:Item key="Mining" text="Mining"/>
+                            </ComboBox>
+          
+
+                            <Label text="contactPerson" required="true"/>
+                            <Input placeholder="contactperson" value="{Details>/contactPerson}" required="true" />
+
+                            <Label text="customerEmail" required="true"/>
+                            <Input placeholder="Enter the Email" value="{Details>/customerEmail}" required="true" />
+
+                            <Label text="phone Number" required="true"/>
+                            <Input placeholder="Enter the phoneNumber" value="{Details>/phone}" required="true" />
+
+                            <!-- <core:Title text=""></core:Title> -->
+                                
+                                <Label text="address" required="true"/>
+                                <Input placeholder="Enter the address" value="{Details>/address}" required="true" />
+
+                                <Label text="city" required="true"/>
+                                <Input placeholder="Enter the state" value="{Details>/city}" required="true" />
+                                
+
+                                <Label text="state" required="true"/>
+                                <ComboBox id="state"
+                                        width="100%"
+                                        selectedKey="{Details>/state}"
+                                        change=".onCityChange"
+                                        required="true"
+                                        >
+                                        <core:Item key="Tamil Nadu" text="Tamil Nadu"/>
+                                        <core:Item key="Kerala" text="Kerala"/>
+                                        <core:Item key="Panjab" text="Panjab"/>
+                                        <core:Item key="Delhi" text="Delhi"/>
+                                        <core:Item key="Karnataka" text="Karnataka"/>
+                                        <core:Item key="Andhra Pradesh" text="Andhra Pradesh"/>
+                                        <core:Item key="Maharashtra" text="Maharashtra"/>
+                                        </ComboBox>
+
+                                <Label text="country" required="true"/>
+                                <Input placeholder="Enter the country" value="{Details>/country}" required="true" />
+
+                                <Label text="username" required="true"/>
+                                <Input placeholder="Enter the username" value="{Details>/username}" required="true" />
+
+                                <Label text="password" required="true"/>
+                                <Input placeholder="Enter the password"
+                                 value="{Details>/password}" width="100%"
+                                 required="true" />
+
+                                <VBox>
+                                 <layoutData>
+                                 <l:GridData
+                                  linebreak="true"
+                                  span="L4 M4 S4"
+                                  indent="L4 M4 S4"/>
+                                  </layoutData>
+                                <Button
+                                text="Register" 
+                                press=".onSelect"/>
+                                <ToolbarSpacer/>
+                                </VBox>
+                            </form2:content>
+               
+                </form2:SimpleForm>
+                </VBox>
+
+    </Page>
+</mvc:View>
