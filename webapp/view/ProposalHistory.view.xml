@@ -2,6 +2,7 @@
     controllerName="ns.proposalrentelsystem.controller.ProposalHistory"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     displayBlock="true">
 
     <Page
@@ -11,6 +12,7 @@
         navButtonPress=".onBack"
         enableScrolling="true">
 
+        <!-- ================= HEADER ================= -->
         <headerContent>
             <Button
                 text="Create Proposal"
@@ -21,138 +23,248 @@
 
         <content>
 
-            <!-- Intro -->  
-            <VBox >  
-                <Title text="My Proposals" level="H1" titleStyle="H2"/>
-                <Text text="View and manage your proposal history." class="sapUiTinyMarginTop"/>
+            <!-- ================= PAGE INTRO ================= -->
+            <VBox
+                class="sapUiResponsiveContentPadding">
+
+                <Title
+                    text="My Proposals"
+                    level="H1"
+                    titleStyle="H2"/>
+
+                <Text
+                    text="View and manage your proposal history."
+                    class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+
             </VBox>
 
-            <!-- Overview -->
-            <VBox >
-                <Title text="Proposal Overview" 
-                       level="H2"
-                       titleStyle="H4"/>
 
-                <HBox wrap="Wrap">
+            <!-- ================= KPI CARDS ================= -->
+            <HBox
+                wrap="Wrap"
+                justifyContent="SpaceBetween"
+                class="sapUiResponsiveContentPadding">
 
-                    <GenericTile
-                        header="Total"
-                        subheader="All proposals"
-                        frameType="TwoByHalf"
-                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
-                        <TileContent>
-                            <NumericContent
-                                value="{proposal>/total}"
-                                icon="sap-icon://document-text"
-                                valueColor="Neutral"
-                                withMargin="false"/>
-                        </TileContent>
-                    </GenericTile>
+                <!-- TOTAL -->
+                <VBox
+                    class="proposalCard proposalCardBlue">
 
-                    <GenericTile
-                        header="Draft"
-                        subheader="Not yet submitted"
-                        frameType="TwoByHalf"
-                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
-                        <TileContent>
-                            <NumericContent
-                                value="{proposal>/draft}"
-                                icon="sap-icon://edit"
-                                valueColor="Neutral"
-                                withMargin="false"/>
-                        </TileContent>
-                    </GenericTile>
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        alignItems="Center">
 
-                    <GenericTile
-                        header="Submitted"
-                        subheader="Awaiting approval"
-                        frameType="TwoByHalf"
-                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
-                        <TileContent>
-                            <NumericContent
-                                value="{proposal>/submitted}"
-                                icon="sap-icon://paper-plane"
-                                valueColor="Critical"
-                                withMargin="false"/>
-                        </TileContent>
-                    </GenericTile>
+                        <VBox>
+                            <Text
+                                text="Total"
+                                class="proposalCardTitle"/>
 
-                    <GenericTile
-                        header="Approved"
-                        subheader="Ready to proceed"
-                        frameType="TwoByHalf"
-                        class="sapUiTinyMarginBottom">
-                        <TileContent>
-                            <NumericContent
-                                value="{proposal>/approved}"
-                                icon="sap-icon://accept"
-                                valueColor="Good"
-                                withMargin="false"/>
-                        </TileContent>
-                    </GenericTile>
+                            <ObjectNumber
+                                number="{proposal>/total}"
+                                emphasized="true"
+                                class="proposalCardNumber"/>
+                        </VBox>
+
+                        <core:Icon
+                            src="sap-icon://document-text"
+                            size="2rem"
+                            class="proposalCardIcon"/>
+                    </HBox>
+
+                </VBox>
+
+
+                <!-- DRAFT -->
+                <VBox
+                    class="proposalCard proposalCardPurple">
+
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        alignItems="Center">
+
+                        <VBox>
+                            <Text
+                                text="Draft"
+                                class="proposalCardTitle"/>
+
+                            <ObjectNumber
+                                number="{proposal>/draft}"
+                                emphasized="true"
+                                class="proposalCardNumber"/>
+                        </VBox>
+
+                        <core:Icon
+                            src="sap-icon://edit"
+                            size="2rem"
+                            class="proposalCardIcon"/>
+                    </HBox>
+
+                </VBox>
+
+
+                <!-- SUBMITTED -->
+                <VBox
+                    class="proposalCard proposalCardOrange">
+
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        alignItems="Center">
+
+                        <VBox>
+                            <Text
+                                text="Submitted"
+                                class="proposalCardTitle"/>
+
+                            <ObjectNumber
+                                number="{proposal>/submitted}"
+                                emphasized="true"
+                                class="proposalCardNumber"/>
+                        </VBox>
+
+                        <core:Icon
+                            src="sap-icon://paper-plane"
+                            size="2rem"
+                            class="proposalCardIcon"/>
+                    </HBox>
+
+                </VBox>
+
+
+                <!-- APPROVED -->
+                <VBox
+                    class="proposalCard proposalCardGreen">
+
+                    <HBox
+                        justifyContent="SpaceBetween"
+                        alignItems="Center">
+
+                        <VBox>
+                            <Text
+                                text="Approved"
+                                class="proposalCardTitle"/>
+
+                            <ObjectNumber
+                                number="{proposal>/approved}"
+                                emphasized="true"
+                                class="proposalCardNumber"/>
+                        </VBox>
+
+                        <core:Icon
+                            src="sap-icon://accept"
+                            size="2rem"
+                            class="proposalCardIcon"/>
+                    </HBox>
+
+                </VBox>
+
+            </HBox>
+
+
+            <!-- ================= PROPOSAL HISTORY ================= -->
+
+            <VBox
+                class="proposalHistorySection sapUiResponsiveContentPadding">
+
+                <HBox
+                    justifyContent="SpaceBetween"
+                    alignItems="Center"
+                    class="proposalHistoryHeader">
+
+                    <Title
+                        text="Proposal History"
+                        level="H2"
+                        titleStyle="H4"/>
+
+                    <Text
+                        text="Your recent proposals"/>
 
                 </HBox>
+
+
+                <Table
+                    id="proposalHistoryList"
+                    items="{proposal>/proposals}"
+                    inset="false"
+                    growing="true"
+                    growingThreshold="10"
+                    sticky="ColumnHeaders"
+                    noDataText="No proposals yet. Select Create Proposal to start."
+                    width="100%">
+
+                    <columns>
+
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                            <Text text="Proposal"/>
+                        </Column>
+
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                            <Text text="Type"/>
+                        </Column>
+
+                        <Column
+                            minScreenWidth="Desktop"
+                            demandPopin="true">
+                            <Text text="Date"/>
+                        </Column>
+
+                        <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                            <Text text="Status"/>
+                        </Column>
+
+                        <Column
+                            hAlign="End"
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                            <Text text="Total Amount"/>
+                        </Column>
+
+                    </columns>
+
+
+                    <items>
+
+                        <ColumnListItem
+                            type="Navigation"
+                            press=".onProposalPress">
+
+                            <cells>
+
+                                <ObjectIdentifier
+                                    title="{proposal>proposalNumber}"/>
+
+                                <Text
+                                    text="{proposal>type}"/>
+
+                                <Text
+                                    text="{proposal>proposalDate}"/>
+
+                                <ObjectStatus
+                                    text="{proposal>status}"
+                                    state="{proposal>statusState}"
+                                    inverted="true"/>
+
+                                <ObjectNumber
+                                    number="{proposal>totalAmount}"
+                                    unit="₹"
+                                    emphasized="true"/>
+
+                            </cells>
+
+                        </ColumnListItem>
+
+                    </items>
+
+                </Table>
+
             </VBox>
 
-            <!-- History -->
-            <Table
-                id="proposalHistoryList"
-                items="{proposal>/proposals}"
-                inset="true"
-                growing="true"
-                growingThreshold="10"
-                sticky="ColumnHeaders,HeaderToolbar"
-                noDataText="No proposals yet. Select Create Proposal to start."
-                class="sapUiResponsiveMargin"
-                width="auto">
-
-                <headerToolbar>
-                    <OverflowToolbar>
-                        <content>
-                            <Title text="Proposal History" level="H2"/>
-                            <ToolbarSpacer/>
-                            <Text text="Your recent proposals"/>
-                        </content>
-                    </OverflowToolbar>
-                </headerToolbar>
-
-                <columns>
-                    <Column minScreenWidth="Tablet" demandPopin="true">
-                        <Text text="Proposal"/>
-                    </Column>
-                    <Column minScreenWidth="Tablet" demandPopin="true">
-                        <Text text="Type"/>
-                    </Column>
-                    <Column minScreenWidth="Desktop" demandPopin="true">
-                        <Text text="Date"/>
-                    </Column>
-                    <Column minScreenWidth="Tablet" demandPopin="true">
-                        <Text text="Status"/>
-                    </Column>
-                    <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true">
-                        <Text text="Total Amount"/>
-                    </Column>
-                </columns>
-
-                <items>
-                    <ColumnListItem type="Navigation" press=".onProposalPress">
-                        <cells>
-                            <ObjectIdentifier title="{proposal>proposalNumber}"/>
-                            <Text text="{proposal>type}"/>
-                            <Text text="{proposal>proposalDate}"/>
-                            <ObjectStatus
-                                text="{proposal>status}"
-                                state="{proposal>statusState}"
-                                inverted="true"/>
-                            <ObjectNumber
-                                number="{proposal>totalAmount}"
-                                unit="₹"
-                                emphasized="true"/>
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-
         </content>
+
     </Page>
+
 </mvc:View>
