@@ -12,15 +12,17 @@ sap.ui.define([
             ]
         },
 
-        init() {
-            // call the base component's init function
-            UIComponent.prototype.init.apply(this, arguments);
+init() {
+    UIComponent.prototype.init.apply(this, arguments);
 
-            // set the device model
-            this.setModel(models.createDeviceModel(), "device");
+    // restore the username header after a page reload
+    const sUser = sessionStorage.getItem("username");
+    if (sUser) {
+        this.getModel().changeHttpHeaders({ "x-username": sUser });
+    }
 
-            // enable routing
-            this.getRouter().initialize();
-        }
+    this.setModel(models.createDeviceModel(), "device");
+    this.getRouter().initialize();
+}
     });
 });

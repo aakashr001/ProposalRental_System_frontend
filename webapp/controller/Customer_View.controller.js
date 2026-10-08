@@ -97,7 +97,8 @@ sap.ui.define([
                     MessageToast.show(
                         "Login successful"
                     );
-
+sessionStorage.setItem("username", userName);
+this.getOwnerComponent().getModel().changeHttpHeaders({ "x-username": userName });
 
                     // 9. Navigate to ProposalDetails
 

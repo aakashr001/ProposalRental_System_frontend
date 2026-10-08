@@ -13,7 +13,7 @@ sap.ui.define([
             // make sure the backend (default) model is available on this view
             this.getView().setModel(oComponent.getModel());
             oComponent.getRouter()
-                .getRoute("createProposal")
+                .getRoute("CreateProposal")
                 .attachPatternMatched(this._onRouteMatched, this);
         },
 
@@ -123,9 +123,8 @@ sap.ui.define([
                 }
             });
         },
-
-        _navBack: function () {
-            this.getOwnerComponent().getRouter().navTo("RouteMain", {}, true); // your list route name
-        }
+_navBack: function () {
+    this.getOwnerComponent().getRouter().navTo("ProposalHistory", {}, true);
+}
     });
 });
