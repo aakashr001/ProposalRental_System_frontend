@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","ns/proposalrentelsystem/model/models"],(e,t)=>{"use strict";return e.extend("ns.proposalrentelsystem.Component",{metadata:{manifest:"json",interfaces:["sap.ui.core.IAsyncContentCreation"]},init(){e.prototype.init.apply(this,arguments);const s=sessionStorage.getItem("username");if(s){this.getModel().changeHttpHeaders({"x-username":s})}this.setModel(t.createDeviceModel(),"device");this.getRouter().initialize()}})});
+//# sourceMappingURL=Component.js.map

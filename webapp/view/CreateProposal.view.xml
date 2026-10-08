@@ -1,0 +1,98 @@
+<mvc:View controllerName="ns.proposalrentelsystem..controller.CreateProposal"
+    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core"
+    xmlns:uxap="sap.uxap" xmlns:l="sap.ui.layout">
+
+    <uxap:ObjectPageLayout id="createPage" showFooter="true"
+        upperCaseAnchorBar="false" headerContentPinnable="false">
+
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading><Title text="Create Proposal" /></uxap:expandedHeading>
+                <uxap:snappedHeading><Title text="Create Proposal" /></uxap:snappedHeading>
+                <uxap:navigationActions>
+                    <Button icon="sap-icon://decline" type="Transparent" press=".onCancelCreate" />
+                </uxap:navigationActions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:sections>
+            <!-- Items -->
+            <uxap:ObjectPageSection title="Items">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <Table items="{ path: 'draft>/items', templateShareable: false }"
+                               noDataText="No items. Click 'Add Item'.">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title text="Items" />
+                                    <ToolbarSpacer />
+                                    <Button icon="sap-icon://add" text="Add Item" press=".onAddItem" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="16rem"><Text text="Product" /></Column>
+                                <Column width="7rem"><Text text="Quantity" /></Column>
+                                <Column width="10rem"><Text text="Start Date" /></Column>
+                                <Column width="10rem"><Text text="End Date" /></Column>
+                                <Column width="7rem"><Text text="Operators" /></Column>
+                                <Column hAlign="End"><Text text="Estimate" /></Column>
+                                <Column width="3rem" />
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <ComboBox selectedKey="{draft>product_ID}" width="100%"
+                                                  selectionChange=".onProductChange"
+                                                  items="{ path: '/Product', sorter: { path: 'product_Name' },
+                                                           parameters: { $select: 'ID,product_Code,product_Name,basePrice' },
+                                                           templateShareable: false }">
+                                            <core:ListItem key="{ID}" text="{product_Name}" additionalText="{product_Code}" />
+                                        </ComboBox>
+                                        <StepInput value="{draft>quantity}" min="1" max="99" change=".onRecalc" />
+                                        <DatePicker value="{draft>startDate}" valueFormat="yyyy-MM-dd"
+                                                    displayFormat="dd MMM yyyy" change=".onRecalc" />
+                                        <DatePicker value="{draft>endDate}" valueFormat="yyyy-MM-dd"
+                                                    displayFormat="dd MMM yyyy" change=".onRecalc" />
+                                        <StepInput value="{draft>needed_machineOperator}" min="0" max="99" />
+                                        <ObjectNumber number="{draft>estimate}" unit="INR" />
+                                        <Button icon="sap-icon://delete" type="Transparent" press=".onRemoveItem" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <!-- Remarks: below items, right side -->
+            <uxap:ObjectPageSection title="Remarks">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <l:Grid defaultSpan="XL12 L12 M12 S12" containerQuery="true">
+                            <VBox>
+                                <layoutData>
+                                    <l:GridData span="XL6 L6 M12 S12" indent="XL6 L6 M0 S0" />
+                                </layoutData>
+                                <Label text="Remarks" labelFor="remarksInput" />
+                                <TextArea id="remarksInput" value="{draft>/customerRemarks}"
+                                          rows="4" width="100%" maxLength="255"
+                                          showExceededText="true"
+                                          placeholder="Enter remarks for this proposal" />
+                            </VBox>
+                        </l:Grid>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+
+        <uxap:footer>
+            <OverflowToolbar>
+                <Label text="Estimated total:" />
+                <ObjectNumber number="{draft>/total}" unit="INR" emphasized="true" />
+                <ToolbarSpacer />
+                <Button text="Submit" type="Emphasized" press=".onSubmitProposal" />
+                <Button text="Cancel" press=".onCancelCreate" />
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

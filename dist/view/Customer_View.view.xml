@@ -1,0 +1,66 @@
+<mvc:View
+    xmlns:form2="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form.SimpleForm"
+    controllerName="ns.proposalrentelsystem.controller.Customer_View"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page
+        id="page"
+        title="{i18n>title}" class="loginPage">
+
+        <content>
+
+            <VBox
+                width="100%"
+                height="100%"
+                class= "loginPage"
+                justifyContent="Center"
+                alignItems="Center">
+
+                      <!-- <Image src="../image/OIP.webp"
+                       width="100%"
+                       height="100%"
+                       ></Image> -->
+
+                <form2:SimpleForm
+                    title="Customer Login"
+                    class = "glassLogin"
+                    width="300px">
+
+                    <Text text="User Name" />
+
+                    <Input
+                        id="username"
+                        placeholder="Enter customer name" />
+
+                    <Text text="Password" />
+
+                    <Input
+                        id="password"
+                        placeholder="Enter password"
+                        type="Password" />
+
+                    <HBox
+                        justifyContent="Center"
+                        width="100%">
+
+                        <Button
+                            text="Login"
+                            width="100px"
+                            press=".onLogin"
+                            class="sapUiMediumMarginEnd"
+                            />
+
+
+                        <Button 
+                            text="SignUp"
+                            width="100px"
+                            press=".onSignup"/>
+                    </HBox>
+                </form2:SimpleForm>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
