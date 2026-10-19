@@ -1,26 +1,37 @@
-/* Background */
+
+/* =====================================================
+   1. LOGIN PAGE
+===================================================== */
+
 .loginPage {
-    background-image: url("../image/Main.webp");
-    background-size: cover;
+    background-image: url("../image/GMMCOmain.png");
+    background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Main glass card */
+/* proposl history header*/
+
+/* .sapMFlexBox {
+    background-image: url("../image/Gmmco.jpg");
+    background-size: cover;
+} */
+
+
+/* =====================================================
+   2. LOGIN GLASS CARD
+===================================================== */
+
 .glassLogin {
     background: rgba(255, 255, 255, 0.18) !important;
     border: 1px solid rgba(255, 255, 255, 0.45) !important;
     border-radius: 20px !important;
-
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     overflow: hidden !important;
 }
 
-/* Remove SimpleForm internal white backgrounds */
 .glassLogin .sapUiFormResGrid,
 .glassLogin .sapUiFormResGridCont,
 .glassLogin .sapUiFormResGridMain,
@@ -28,36 +39,504 @@
     background: transparent !important;
 }
 
-/* Glass title section */
 .glassLogin .sapUiFormTitle {
     background: transparent !important;
     color: white !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Labels */
-.glassLogin .sapMText {
+.glassLogin .sapMText,
+.glassLogin .sapMLabel {
     color: white !important;
     font-weight: 500;
 }
 
-/* Inputs */
 .glassLogin .sapMInputBaseInner {
-    background: rgba(255, 255, 255, 0.75) !important;
-    border: none !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
     border-radius: 8px !important;
 }
 
-/* Buttons */
 .glassLogin .sapMBtnInner {
     border-radius: 8px !important;
 }
 
-/* Registation */
-.Registorpage {
-    background-image: url("../image/REGG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+/* =====================================================
+   3. REGISTRATION PAGE - IMAGE AND FORM FIT
+===================================================== */
+
+.registrationPage,
+.registrationPage .sapMPageBgStandard {
+    background: #ffffff !important;
+}
+
+
+.backgroundimg{
+   background-image: url("../image/LOGO.webp"); 
+   background-repeat: no-repeat;
+   background-size: cover;
+   height: 100%;
+   width: 100%;
+   margin-right: 2%;
 
 }
+/* Main horizontal layout */
+
+.registrationLayout {
+    width: 100% !important;
+    min-height: calc(100vh - 3.5rem);
+    align-items: stretch !important;
+    box-sizing: border-box;
+    gap: 0 !important;
+}
+
+/* Left image panel */
+
+.registrationImage {
+    width: 68% !important;
+    flex: 0 0 68% !important;
+    min-width: 0;
+    align-self: stretch;
+    background-size: cover;
+    background-position: center center;
+    background: 100% 100%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+/* Right form panel */
+
+.registrationFormPanel {
+    width: 32% !important;
+    flex: 0 0 32% !important;
+    min-width: 0;
+
+    box-sizing: border-box;
+    padding: 1.25rem;
+
+    background: #ffffff !important;
+    align-self: stretch;
+}
+
+/* Registration form */
+
+.registrationSimpleForm {
+    width: 100% !important;
+    box-sizing: border-box;
+    background: #ffffff !important;
+}
+
+/* Remove unnecessary inner form spacing */
+
+.registrationSimpleForm .sapUiFormResGrid,
+.registrationSimpleForm .sapUiFormResGridCont,
+.registrationSimpleForm .sapUiFormResGridMain,
+.registrationSimpleForm .sapUiRespGrid {
+    box-sizing: border-box;
+    background: #ffffff !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Labels */
+
+.registrationSimpleForm .sapMLabel {
+    font-size: 0.95rem;
+}
+
+/* Inputs and dropdowns */
+
+.registrationSimpleForm .sapMInputBase,
+.registrationSimpleForm .sapMComboBox {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Responsive layout for smaller screens */
+
+@media (max-width: 900px) {
+    .registrationLayout {
+        flex-direction: column !important;
+    }
+
+    .registrationImage {
+        width: 100% !important;
+        flex: 0 0 auto !important;
+        min-height: 260px;
+    }
+
+    .registrationFormPanel {
+        width: 100% !important;
+        flex: 0 0 auto !important;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .registrationImage {
+        min-height: 200px;
+        background-position: center;
+    }
+
+    .registrationFormPanel {
+        padding: 0.75rem;
+    }
+}
+
+
+/* =====================================================
+   4. PROPOSAL HISTORY PAGE
+===================================================== */
+
+.proposalHistoryPage {
+    background: #f3f6fa !important;
+}
+
+.proposalHistoryPage .sapMPageBgStandard {
+    background: #f3f6fa !important;
+}
+
+.proposalHistoryContent {
+    box-sizing: border-box;
+    padding: 1.5rem;
+    background: #f3f6fa;
+    
+    
+}
+
+/* Page banner */
+
+.proposalHistoryBanner {
+    box-sizing: border-box;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #b6d1f0, #f2f6ff) image-set("") !important;
+    border: 1px solid #0b6cd4;
+    border-radius: 14px;
+    
+}
+
+/* Main heading */
+
+.proposalHistoryTitle {
+    color: #163a5f !important;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Subtitle */
+
+.proposalHistorySubtitle {
+    color: #526b82 !important;
+    font-size: 1rem;
+    margin-top: 0.4rem;
+}
+
+
+/* =====================================================
+   5. PROPOSAL KPI TILES
+===================================================== */
+
+.proposalCard {
+    box-sizing: border-box;
+    background: #c0e8f6 !important;
+    border: 1px solid #e0e8f1;
+    border-bottom: 4px solid #0a6ed1;
+    border-radius: 14px;
+    padding: 0.4rem;
+    margin-bottom: 1.5rem;
+    min-width: 190px;
+    box-shadow: 0 3px 10px rgba(30, 55, 80, 0.07);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+}
+
+/* Optional hover effect */
+
+.proposalCard:hover {
+    box-shadow: 0 7px 18px rgba(30, 55, 80, 0.13);
+    transform: translateY(-2px);
+}
+
+/* Blue tile */
+
+.proposalCardBlue {
+    background: #eef6ff !important;
+    border-color: #d5e8ff;
+    border-bottom-color: #0a6ed1 !important;
+}
+
+.proposalCardBlue .proposalCardIcon {
+    color: #0a6ed1 !important;
+}
+
+/* Purple tile */
+
+.proposalCardPurple {
+    background: #f5f0ff !important;
+    border-color: #e5d9ff;
+    border-bottom-color: #7c4dff !important;
+}
+
+.proposalCardPurple .proposalCardIcon {
+    color: #7c4dff !important;
+}
+
+/* Orange tile */
+
+.proposalCardOrange {
+    background: #fff5e9 !important;
+    border-color: #ffe4c4;
+    border-bottom-color: #e9730c !important;
+}
+
+.proposalCardOrange .proposalCardIcon {
+    color: #e9730c !important;
+}
+
+/* Green tile */
+
+.proposalCardGreen {
+    background: #edf9f0 !important;
+    border-color: #d0ecd8;
+    border-bottom-color: #107e3e !important;
+}
+
+.proposalCardGreen .proposalCardIcon {
+    color: #107e3e !important;
+}
+
+/* Tile title */
+
+.proposalCardTitle {
+    color: #526b82 !important;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Tile number */
+
+.proposalCardNumber {
+    color: #1d2d3e !important;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+}
+
+/* Tile icon */
+
+.proposalCardIcon {
+    font-size: 1.5rem;
+}
+
+
+/* =====================================================
+   6. PROPOSAL HISTORY SECTION
+===================================================== */
+
+.proposalHistorySection {
+    box-sizing: border-box;
+    background: #ffffff !important;
+    margin: 1.25rem 0;
+    border: 1px solid #e1e8ef;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(30, 55, 80, 0.05);
+    overflow: hidden;
+}
+
+/* Section header */
+
+.proposalHistoryHeader {
+    padding: 1.25rem 1.5rem;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e5eaf0;
+}
+
+/* Section title */
+
+.proposalHistoryHeader .sapMTitle {
+    color: #1d2d3e !important;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Section description */
+
+.proposalHistoryHeader .sapMText {
+    color: #64788b !important;
+    margin-top: 0.25rem;
+}
+
+
+/* =====================================================
+   7. PROPOSAL HISTORY TABLE
+===================================================== */
+
+/* Table background */
+
+.proposalHistorySection .sapMListTbl {
+    background: #ffffff !important;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Table headers */
+
+.proposalHistorySection .sapMListTblHeaderCell {
+    background: #eaf2fb !important;
+    border-bottom: 2px solid #d2e2f2;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+}
+
+.proposalHistorySection .sapMListTblHeaderCell .sapMLabel {
+    color: #24496b !important;
+    font-weight: 700;
+}
+
+/* Table cells */
+
+.proposalHistorySection .sapMListTblCell {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    vertical-align: middle;
+}
+
+/* Default table rows */
+
+.proposalHistorySection .sapMListTblRow {
+    background: #ffffff !important;
+    transition: background-color 0.2s ease;
+}
+
+.proposalHistorySection .sapMListTblRow:nth-child(even) {
+    background: #f5f9fe !important;
+}
+
+/* Keep cell backgrounds transparent so row colors show */
+
+.proposalHistorySection .sapMListTblRow .sapMListTblCell {
+    background: transparent !important;
+    border-bottom: 1px solid #e8edf3;
+}
+
+/* Proposal ID */
+
+.proposalHistorySection .sapMObjectIdentifierTitle {
+    color: #0a6ed1 !important;
+    font-weight: 700;
+}
+
+/* Amount */
+
+.proposalHistorySection .sapMObjectNumberText {
+    color: #263f57;
+    font-weight: 600;
+}
+
+/* Hover effect */
+
+.proposalHistorySection .sapMLIB.sapMLIBHoverable:hover,
+.proposalHistorySection .sapMListTblRow:hover {
+    background: #e7f2ff !important;
+}
+
+
+/* =====================================================
+   8. PROPOSAL STATUS BADGES
+   Apply these classes to the status control as needed.
+===================================================== */
+
+/* Pending */
+
+.proposalStatusPending .sapMObjStatusText {
+    color: #a65300 !important;
+    background: #fff0d6 !important;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Submitted */
+
+.proposalStatusSubmitted .sapMObjStatusText {
+    color: #6941c6 !important;
+    background: #f0eaff !important;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Approved */
+
+.proposalStatusApproved .sapMObjStatusText {
+    color: #107e3e !important;
+    background: #e2f5e9 !important;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Rejected */
+
+.proposalStatusRejected .sapMObjStatusText {
+    color: #bb0000 !important;
+    background: #ffe8e8 !important;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Draft */
+
+.proposalStatusDraft .sapMObjStatusText {
+    color: #526b82 !important;
+    background: #eaf0f5 !important;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   9. RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .proposalHistoryContent {
+        padding: 0.75rem;
+    }
+
+    .proposalHistoryBanner {
+        padding: 1rem;
+    }
+
+    .proposalHistoryTitle {
+        font-size: 1.4rem;
+    }
+
+    .proposalCard {
+        min-width: 0;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .proposalCardNumber {
+        font-size: 1.4rem;
+    }
+
+    .proposalHistoryHeader {
+        padding: 1rem;
+    }
+
+    .proposalHistorySection {
+        margin: 0.75rem 0;
+    }
+}
+/* .logoimage{
+    background-image: url("../image/Gmmco.jpg");
+}
+.__vbox0{
+    background-image: url("../image/Gmmco.jpg");
+} */

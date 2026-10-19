@@ -24,6 +24,13 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "4.0"
         }
+      },
+      "salesService": {
+      "uri": "/odata/v4/salesapi/",
+      "type": "OData",
+      "settings": {
+        "odataVersion": "4.0"
+       }
       }
     },
     "crossNavigation": {
@@ -78,6 +85,14 @@
           "bundleName": "ns.proposalrentelsystem.i18n.i18n"
         }
       },
+      "salesService": {
+      "dataSource": "salesService",
+      "preload": true,
+      "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true
+         }
+      },
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -123,6 +138,14 @@
                 "ProposalHistory"
             ]
         },
+        
+        {
+            "name": "ProposalDetails",
+            "pattern": "ProposalDetails/{proposalId}",
+            "target": [
+                "ProposalDetails"
+            ]
+        },
         {
           "name" : "Registation",
           "pattern" : "Registation",
@@ -152,9 +175,13 @@
             "name" : "Registation"
           },
           "CreateProposal": {
-      "name": "CreateProposal",
-      "id": "CreateProposal"
-    }
+          "name": "CreateProposal",
+          "id": "CreateProposal"
+          },
+          "ProposalDetails":{
+            "id" : "ProposalDetails",
+            "name" : "ProposalDetails"
+          }
         
     }
 },

@@ -1,101 +1,152 @@
+
 <mvc:View
+    xmlns:layout="sap.ui.layout"
     controllerName="ns.proposalrentelsystem.controller.ProposalDetails"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.uxap"
+    xmlns:form="sap.ui.layout.form">
 
-    <Page
-        id="proposalDetailsPage"
-        title="My Proposal Details"
-        showNavButton="true"
-        navButtonPress=".onNavBack">
+    <m:Page showNavButton="true" navButtonPress=".onNavBack" enableScrolling="true" title="My Proposal Details">
+            <ObjectPageLayout id="ObjectPageLayout"
+                showTitleInHeaderContent="true"
+                showEditHeaderButton="true"
+                headerContentPinnable="true"
+                showFooter="true"
+            >
 
-        <content>
+                <headerTitle>
+                    <ObjectPageDynamicHeaderTitle>
+                        <expandedHeading>
+                            <m:HBox>
+                                <m:Title text="{proposalNumber}" class="sapUiSmallMarginBottom"></m:Title>
+                            </m:HBox>
+                        </expandedHeading>
 
-            <VBox class="sapUiMediumMargin">
+                    </ObjectPageDynamicHeaderTitle>
+                </headerTitle>
 
-                <Title
-                    text="Customer Proposals"
-                    level="H2"
-                    class="sapUiSmallMarginBottom" />
+                <headerContent>
+                    <layout:VerticalLayout>
+                        <m:HBox>
+                            <m:Text text="Status" class="sapUiSmallMarginEnd"></m:Text>
+                            <m:ObjectStatus text="{proposalStatus}" state="{= ${proposalStatus} === 'Approved' ? 'Success' : 'Error'}" ></m:ObjectStatus>
+                        </m:HBox>
+                        <m:HBox>
+                            <m:Text text="Total Amount" class="sapUiSmallMarginEnd"></m:Text>
+                            <m:ObjectStatus text="{totalAmount}"></m:ObjectStatus>
+                        </m:HBox>
+                    </layout:VerticalLayout>
+                </headerContent>
 
-                <Table
-                    id="proposalTable"
-                    items="{proposalModel>/value}"
-                    growing="true"
-                    growingScrollToLoad="true"
-                    growingThreshold="10"
-                    noDataText="No proposals found">
+                <sections>
+                    <ObjectPageSection titleUppercase="false" id="proposalSection" title="Proposal Details">
+                        <subSections>
+                            <ObjectPageSubSection 
+                                id="proposalInformation"
+                                title="Proposal Information"
+                            >
+                                <blocks>
+                                    <f:SimpleForm
+                                        editable="false"
+                                        layout="ResponsiveGridLayout"
+                                        columnsL="2"
+                                        columnsM="2"
+                                        columnsXL="2"
+                                        labelSpanL="4"
+                                        labelSpanM="4"
+                                        labelSpanXL="4"
+                                        adjustLabelSpan="false"
+                                    >
 
-                    <headerToolbar>
-                        <OverflowToolbar>
-                            <Title text="Proposals" />
-                            <ToolbarSpacer />
-                            <Button text="Create" type="Emphasized" icon="sap-icon://add" press=".onCreatePress" />
-                            <Button text="Delete" type="Reject" icon="sap-icon://delete"
-                enabled="{ui>/hasSelection}" press=".onDeletePress" />
-                            <SearchField width="15rem" search=".onSearch" placeholder="Proposal number" />
-                            <Button icon="sap-icon://refresh" press=".onRefresh" />
-                        </OverflowToolbar>
-                    </headerToolbar>
+                                        <m:Label text="Proposal Number"></m:Label>
+                                        <m:Text text="{proposalNumber}"></m:Text>
+
+                                        <m:Label text="Proposal ID"></m:Label>
+                                        <m:Text text="{ID}"></m:Text>
+                                        
+                                        <m:Label text="Proposal Date"></m:Label>
+                                        <m:Text text="{proposalDate}"></m:Text>
+                                        
+                                        <m:Label text="Proposal Type"></m:Label>
+                                        <m:Text text="{proposalType}"></m:Text>
+                                        
+                                        <m:Label text="Proposal Status"></m:Label>
+                                        <m:Text text="{proposalStatus}"></m:Text>
+                                        
+                                        <m:Label text="Total Amount"></m:Label>
+                                        <m:Text text="{totalAmount}"></m:Text>  
+<!--                                         
+                                        <m:Label text="Customer Name"></m:Label>
+                                        <m:Text text="{customer/companyName}"></m:Text> -->
+
+                                    </f:SimpleForm>
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+
+                    <ObjectPageSection titleUppercase="false" id="proposalItemsSection">
+                        <subSections>
+                            <ObjectPageSubSection 
+                                id="proposalItemsInformation"
+                                title="Proposal Items"
+                            >
+                                <blocks>
+                                    <m:Table id="idproposalItemTable" mode="MultiSelect"
+                                    items= "{ path : 'items' }"
+                                    >
+                                        <m:columns>
+                                            <m:Column>
+                                                <m:Text text="Product Name"></m:Text>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="Quantity"></m:Text>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="Unit Price"></m:Text>
+                                            </m:Column>
+                                           <m:Column>
+                                                <m:Text text="Estimated Amount"></m:Text>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="Rental Duration"></m:Text>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="Start Date"></m:Text>
+                                            </m:Column>
+                                            <m:Column>
+                                                <m:Text text="End Date"></m:Text>
+                                            </m:Column>
+                                        </m:columns>
+
+                                        <m:items >
+                                            <m:ColumnListItem>
+                                                <m:cells>
+                                                   <m:Text text="{product/product_Name}"></m:Text>
+                                                    <m:Text text="{quantity}"></m:Text>
+                                                    <m:Text text="{unitPrice}"></m:Text>
+                                                    <m:Text text="{estimatedAmount}"></m:Text>
+                                                    <m:Text text="{rentalDuration}"></m:Text>
+                                                    <m:Text text="{startDate}"></m:Text>
+                                                    <m:Text text="{endDate}"></m:Text>
+                                              
+                                                </m:cells>
+                                            </m:ColumnListItem>
+                                        </m:items>
+                                    </m:Table>
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+
                     
-                    <columns>
+                </sections>
 
-                        <Column>
-                            <Text text="Proposal Number" />
-                        </Column>
+            </ObjectPageLayout>
+        </m:Page>
+    
 
-                        <Column>
-                            <Text text="Proposal Date" />
-                        </Column>
-
-                        <Column>
-                            <Text text="Type" />
-                        </Column>
-
-                        <Column>
-                            <Text text="Status" />
-                        </Column>
-
-                        <Column>
-                            <Text text="Total Amount" />
-                        </Column>
-
-                        <Column>
-                            <Text text="Negotiated Amount" />
-                        </Column>
-
-                    </columns>
-
-                    <items>
-
-                        <ColumnListItem>
-
-                            <cells>
-
-                                <Text text="{proposalModel>proposalNumber}" />
-
-                                <Text text="{proposalModel>proposalDate}" />
-
-                                <Text text="{proposalModel>proposalType}" />
-
-                                <ObjectStatus text="{proposalModel>proposalStatus}" />
-
-                                <ObjectNumber number="{proposalModel>totalAmount}" />
-
-                                <ObjectNumber number="{proposalModel>negotiateAmount}" />
-
-                            </cells>
-
-                        </ColumnListItem>
-
-                    </items>
-
-                </Table>
-
-            </VBox>
-
-        </content>
-
-    </Page>
-
-</mvc:View> 
+   
+</mvc:View>

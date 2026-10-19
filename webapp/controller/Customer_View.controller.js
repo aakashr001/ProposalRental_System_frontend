@@ -65,45 +65,52 @@ sap.ui.define([
 
                     // 3. Execute login
 
-                    await oAction.execute();
+                        await oAction.execute();
 
                     // 4. Get result context
 
-                    const oResultContext = oAction.getBoundContext();
+                        const oResultContext = oAction.getBoundContext();
 
-                    console.log("Result Context:",oResultContext);
+                        console.log("Result Context:",oResultContext);
 
                     // 5. Get returned object
                     
 
-                    const resultObj = oResultContext.getObject();
+                        const resultObj = oResultContext.getObject();
 
-                    console.log("Result Object:",resultObj.value);
+                        console.log("Result Object:",resultObj);
 
                     // 6. Create JSON Model
 
-                    const oProposalModel = new JSONModel(resultObj.value);
+                        const oProposalModel = new JSONModel(resultObj.proposal);
+                        const oCustomerModel = new JSONModel(resultObj.customer);
 
                     // 7. Store model globally
 
-                    this.getOwnerComponent().setModel(
-                        oProposalModel, "proposalModel");
+                        this.getOwnerComponent().setModel(
+                            oProposalModel, "proposalModel");
+
+                        this.getOwnerComponent().setModel(
+                            oCustomerModel, "customerModel"
+                        )
 
 
-                    console.log("Proposal Model:",oProposalModel);
+                        console.log("Proposal Model:",oProposalModel);
+                        console.log("Customer Model : ", oCustomerModel);
+                        
 
                     // 8. Login successful
 
-                    MessageToast.show(
-                        "Login successful"
-                    );
-sessionStorage.setItem("username", userName);
-this.getOwnerComponent().getModel().changeHttpHeaders({ "x-username": userName });
+                        MessageToast.show(
+                            "Login successful"
+                        );
+                        sessionStorage.setItem("username", userName);
+                        this.getOwnerComponent().getModel().changeHttpHeaders({ "x-username": userName });
 
-                    // 9. Navigate to ProposalDetails
+                        // 9. Navigate to ProposalDetails
 
-                    this.getOwnerComponent().getRouter()
-                        .navTo("ProposalHistory");
+                        this.getOwnerComponent().getRouter()
+                            .navTo("ProposalHistory");
 
                 } catch (oError) {
 

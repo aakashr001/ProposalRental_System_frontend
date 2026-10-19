@@ -29,6 +29,13 @@
 					"localUri": "localService/mainService/metadata.xml",
 					"odataVersion": "4.0"
 				}
+			},
+			"salesService": {
+				"uri": "/odata/v4/salesapi/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
 			}
 		},
 		"crossNavigation": {
@@ -86,6 +93,14 @@
 					]
 				}
 			},
+			"salesService": {
+				"dataSource": "salesService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"autoExpandSelect": true
+				}
+			},
 			"": {
 				"dataSource": "mainService",
 				"preload": true,
@@ -131,6 +146,13 @@
 					]
 				},
 				{
+					"name": "ProposalDetails",
+					"pattern": "ProposalDetails/{proposalId}",
+					"target": [
+						"ProposalDetails"
+					]
+				},
+				{
 					"name": "Registation",
 					"pattern": "Registation",
 					"target": [
@@ -138,9 +160,9 @@
 					]
 				},
 				{
-					"name": "createProposal",
-					"pattern": "createProposal",
-					"target": "createProposal"
+					"name": "CreateProposal",
+					"pattern": "proposal/create",
+					"target": "CreateProposal"
 				}
 			],
 			"targets": {
@@ -156,9 +178,13 @@
 					"id": "Registation",
 					"name": "Registation"
 				},
-				"createProposal": {
+				"CreateProposal": {
 					"name": "CreateProposal",
-					"id": "createProposal"
+					"id": "CreateProposal"
+				},
+				"ProposalDetails": {
+					"id": "ProposalDetails",
+					"name": "ProposalDetails"
 				}
 			}
 		},
