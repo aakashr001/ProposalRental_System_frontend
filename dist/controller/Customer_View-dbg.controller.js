@@ -16,19 +16,24 @@ sap.ui.define([
             onInit(){
 
             },
+            
              onSignup(){
+                console.log("Testing");
+                
                 this.getOwnerComponent().getRouter().navTo("Registation")
              },
 
             async onLogin(oEvent) {
+                console.log("Login Testing");
+                
 
                 const oModel = this.getView().getModel();
 
                 console.log("Model:", oModel);
 
-                const userName = this.byId("username").getValue().trim();
+                const userName = this.byId("username").getValue();
 
-                const password = this.byId("password").getValue().trim();
+                const password = this.byId("password").getValue();
 
                 console.log("User Name:", userName);
                 console.log("Password:", password);
@@ -60,50 +65,45 @@ sap.ui.define([
 
                     // 3. Execute login
 
-                    await oAction.execute();
+                        await oAction.execute();
 
                     // 4. Get result context
 
-                    const oResultContext = oAction.getBoundContext();
+                        const oResultContext = oAction.getBoundContext();
 
-                    console.log("Result Context:",oResultContext);
+                        console.log("Result Context:",oResultContext);
 
                     // 5. Get returned object
                     
 
-                    const resultObj = oResultContext.getObject();
+                        const resultObj = oResultContext.getObject();
 
-                    console.log("Result Object:",resultObj);
+                        console.log("Result Object:",resultObj.value);
 
                     // 6. Create JSON Model
 
-                    const oProposalModel = new JSONModel(resultObj);
+                        const oProposalModel = new JSONModel(resultObj.value);
 
                     // 7. Store model globally
 
-                    this.getOwnerComponent().setModel(
-                        oProposalModel, "proposalModel");
+                        this.getOwnerComponent().setModel(
+                            oProposalModel, "proposalModel");
 
 
-                    console.log("Proposal Model:",oProposalModel);
+                        console.log("Proposal Model:",oProposalModel);
 
                     // 8. Login successful
 
-                    MessageToast.show(
-                        "Login successful"
-                    );
+                        MessageToast.show(
+                            "Login successful"
+                        );
+                        sessionStorage.setItem("username", userName);
+                        this.getOwnerComponent().getModel().changeHttpHeaders({ "x-username": userName });
 
+                        // 9. Navigate to ProposalDetails
 
-sessionStorage.setItem("username", userName);
-this.getOwnerComponent().getModel().changeHttpHeaders({ "x-username": userName });
-
-// 9. Navigate to ProposalDetails
-this.getOwnerComponent().getRouter().navTo("ProposalHistory");
-
-                    // 9. Navigate to ProposalDetails
-
-                    this.getOwnerComponent().getRouter()
-                        .navTo("ProposalHistory");
+                        this.getOwnerComponent().getRouter()
+                            .navTo("ProposalHistory");
 
                 } catch (oError) {
 

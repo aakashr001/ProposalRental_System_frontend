@@ -5,11 +5,10 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
 
-    <Page
-        id="page"
-        title="{i18n>title}" class="loginPage">
+    <!-- <Page
+        id="page">
 
-        <content>
+        <content> -->
 
             <VBox
                 width="100%"
@@ -49,9 +48,7 @@
                             text="Login"
                             width="100px"
                             press=".onLogin"
-                            class="sapUiMediumMarginEnd"
-                            />
-
+                            class="sapUiMediumMarginEnd"/>
 
                         <Button 
                             text="SignUp"
@@ -61,6 +58,6 @@
                 </form2:SimpleForm>
 
             </VBox>
-        </content>
-    </Page>
+        <!-- </content>
+    </Page> -->
 </mvc:View>

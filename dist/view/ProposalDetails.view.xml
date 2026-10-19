@@ -1,101 +1,234 @@
+
 <mvc:View
     controllerName="ns.proposalrentelsystem.controller.ProposalDetails"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
 
     <Page
         id="proposalDetailsPage"
         title="My Proposal Details"
         showNavButton="true"
-        navButtonPress=".onNavBack">
+        navButtonPress=".onNavBack"
+        enableScrolling="true">
 
         <content>
+            <VBox width="100%" class="logoimage">
 
-            <VBox class="sapUiMediumMargin">
+                <!-- Proposal Header -->
+                <VBox
+                    width="100%"
+                    class="sapUiResponsiveContentPadding">
 
-                <Title
-                    text="Customer Proposals"
-                    level="H2"
-                    class="sapUiSmallMarginBottom" />
+                    <Title
+                        text="{proposalModel>/proposalNumber}"
+                        level="H1"
+                        class="sapUiSmallMarginBottom"/>
 
-                <Table
-                    id="proposalTable"
-                    items="{proposalModel>/value}"
-                    growing="true"
-                    growingScrollToLoad="true"
-                    growingThreshold="10"
-                    noDataText="No proposals found">
+                    <Text
+                        text="{proposalModel>/proposalType}"
+                        class="sapUiTinyMarginBottom"/>
 
-                    <headerToolbar>
-                        <OverflowToolbar>
-                            <Title text="Proposals" />
-                            <ToolbarSpacer />
-                            <Button text="Create" type="Emphasized" icon="sap-icon://add" press=".onCreatePress" />
-                            <Button text="Delete" type="Reject" icon="sap-icon://delete"
-                enabled="{ui>/hasSelection}" press=".onDeletePress" />
-                            <SearchField width="15rem" search=".onSearch" placeholder="Proposal number" />
-                            <Button icon="sap-icon://refresh" press=".onRefresh" />
-                        </OverflowToolbar>
-                    </headerToolbar>
-                    
-                    <columns>
+                    <HBox
+                    alignItems="Center"
+                    wrap="Wrap"
+                    class="sapUiSmallMarginBottom">
 
-                        <Column>
-                            <Text text="Proposal Number" />
-                        </Column>
+                    <Label
+                        text="Status:"
+                        class="sapUiTinyMarginEnd"/>
 
-                        <Column>
-                            <Text text="Proposal Date" />
-                        </Column>
+                    <ObjectStatus
+                        text="{proposalModel>/proposalStatus}"
+                        state="Information"
+                        class="sapUiTinyMarginEnd"/>
 
-                        <Column>
-                            <Text text="Type" />
-                        </Column>
+                    <Label
+                        text="Total Amount:"
+                        class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
 
-                        <Column>
-                            <Text text="Status" />
-                        </Column>
+                    <ObjectNumber
+                        number="{proposalModel>/totalAmount}"
+                        emphasized="true"/>
 
-                        <Column>
-                            <Text text="Total Amount" />
-                        </Column>
+                </HBox>
 
-                        <Column>
-                            <Text text="Negotiated Amount" />
-                        </Column>
 
-                    </columns>
+                </VBox>
+
+                <!-- Proposal Tabs -->
+                <IconTabBar
+                    id="proposalDetailsTabs"
+                    expandable="false"
+                    selectedKey="information"
+                    applyContentPadding="false">
 
                     <items>
 
-                        <ColumnListItem>
 
-                            <cells>
 
-                                <Text text="{proposalModel>proposalNumber}" />
+                        <!-- General Information -->
+                        <IconTabFilter
+                            key="information"
+                            text="GENERAL INFORMATION"
+                            icon="sap-icon://document-text">
 
-                                <Text text="{proposalModel>proposalDate}" />
+                            <VBox
+                                width="100%"
+                                class="sapUiResponsiveContentPadding">
 
-                                <Text text="{proposalModel>proposalType}" />
+                                <Title
+                                    text="General Information"
+                                    level="H2"
+                                    class="sapUiSmallMarginBottom"/>
 
-                                <ObjectStatus text="{proposalModel>proposalStatus}" />
+                                <Panel
+                                    width="100%"
+                                    expandable="false"
+                                    backgroundDesign="Solid">
 
-                                <ObjectNumber number="{proposalModel>totalAmount}" />
+                                    <content>
+                                        <form:SimpleForm
+                                            editable="false"
+                                            layout="ResponsiveGridLayout"
+                                            labelSpanXL="3"
+                                            labelSpanL="3"
+                                            labelSpanM="4"
+                                            labelSpanS="12"
+                                            columnsXL="2"
+                                            columnsL="2"
+                                            columnsM="1"
+                                            singleContainerFullSize="false"
+                                            adjustLabelSpan="false"
+                                            class="sapUiMediumMargin">
 
-                                <ObjectNumber number="{proposalModel>negotiateAmount}" />
+                                            <Label text="Proposal Number"/>
+                                            <Text
+                                                text="{proposalModel>/proposalNumber}"
+                                                wrapping="true"/>
 
-                            </cells>
+                                            <Label text="Proposal ID"/>
+                                            <Text
+                                                text="{proposalModel>/ID}"
+                                                wrapping="true"/>
 
-                        </ColumnListItem>
+                                            <Label text="Proposal Date"/>
+                                            <Text
+                                                text="{proposalModel>/proposalDate}"
+                                                wrapping="true"/>
+
+                                            <Label text="Proposal Type"/>
+                                            <Text
+                                                text="{proposalModel>/proposalType}"
+                                                wrapping="true"/>
+
+                                            <Label text="Proposal Status"/>
+                                            <ObjectStatus
+                                                text="{proposalModel>/proposalStatus}"
+                                                state="Information"/>
+
+                                            <Label text="Total Amount"/>
+                                            <ObjectNumber
+                                                number="{proposalModel>/totalAmount}"
+                                                emphasized="true"/>
+
+                                        </form:SimpleForm>
+                                    </content>
+
+                                </Panel>
+                            </VBox>
+                        </IconTabFilter>
+
+                        <!-- Equipment Details -->
+                        <IconTabFilter
+                            key="equipment"
+                            text="EQUIPMENT DETAILS"
+                            icon="sap-icon://wrench">
+
+                            <VBox
+                                width="100%"
+                                class="sapUiResponsiveContentPadding">
+
+                                <Title
+                                    text="Equipment Requested in This Proposal"
+                                    level="H2"
+                                    class="sapUiSmallMarginBottom"/>
+
+                                <Panel
+                                    width="100%"
+                                    expandable="false"
+                                    backgroundDesign="Solid">
+
+                                    <content>
+                                        <Table
+                                            id="equipmentDetailsTable"
+                                            width="100%"
+                                            inset="false"
+                                            growing="true"
+                                            growingScrollToLoad="true"
+                                            noDataText="No matching equipment found for this proposal"
+                                            items="{equipmentModel>/equipment}">
+
+                                            <columns>
+                                                <Column>
+                                                    <Text text="Equipment Code"/>
+                                                </Column>
+
+                                                <Column>
+                                                    <Text text="Equipment Name"/>
+                                                </Column>
+
+                                                <Column>
+                                                    <Text text="Serial Number"/>
+                                                </Column>
+
+                                                <Column>
+                                                    <Text text="Model"/>
+                                                </Column>
+
+                                                <!-- <Column>
+                                                    <Text text="Status"/>
+                                                </Column> -->
+                                            </columns>
+
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text
+                                                            text="{equipmentModel>equipmentCode}"
+                                                            wrapping="true"/>
+
+                                                        <Text
+                                                            text="{equipmentModel>equipmentName}"
+                                                            wrapping="true"/>
+
+                                                        <Text
+                                                            text="{equipmentModel>serialNumber}"
+                                                            wrapping="true"/>
+
+                                                        <Text
+                                                            text="{equipmentModel>model}"
+                                                            wrapping="true"/>
+
+                                                        <!-- <ObjectStatus
+                                                            text="{equipmentModel>status}"
+                                                            state="Information"/> -->
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+
+                                        </Table>
+                                    </content>
+
+                                </Panel>
+                            </VBox>
+                        </IconTabFilter>
 
                     </items>
-
-                </Table>
+                </IconTabBar>
 
             </VBox>
-
         </content>
 
     </Page>
-
-</mvc:View> 
+</mvc:View>
